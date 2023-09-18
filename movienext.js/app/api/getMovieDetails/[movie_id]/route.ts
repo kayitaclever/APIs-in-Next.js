@@ -1,8 +1,10 @@
-import { MOVIE_BASE_URL, MOVIE_ACCESS_TOKEN} from "@/app/config";
+
+
+import { MOVIE_BASE_URL, MOVIE_ACCESS_TOKEN } from '@/app/config';
 export async function GET(_request:Request,{params}:{params:{movie_id:number}}){
     const movie_id=params.movie_id
     try{
-        if (!MOVIE_BASE_URL) {
+        if (!MOVIE_ACCESS_TOKEN) {
             return new Response('Movie base url not found',{
                 status:404,
                 statusText:"failed",

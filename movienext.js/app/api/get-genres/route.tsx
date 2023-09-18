@@ -3,12 +3,12 @@ import { MOVIE_ACCESS_TOKEN, MOVIE_BASE_URL } from "@/app/config";
 export async function GET(){
 
   if (!MOVIE_BASE_URL){
-    return new Response("Movie base URL not available",{
+    return new Response("No movie",{
       status:404,
     });
   }
   if (!MOVIE_ACCESS_TOKEN){
-    return new Response("Movie API token not available",{
+    return new Response("No movie",{
       status:400,
   });
 }

@@ -32,7 +32,7 @@ export async function getMovieDetails(movieId:number) {
     try{
         const response=await fetch(url)
         if(!response.ok){
-            return `movie with id ${movieId} not found`
+            return `No movie`
         }
         const result=await response.json()
         return result;

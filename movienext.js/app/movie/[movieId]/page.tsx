@@ -1,40 +1,38 @@
-import { useState, useEffect } from "react";
-import { getMovieDetails } from "@/app/utilities/utils";
-import { NEXT_PUBLIC_IMAGE_BASE_URL } from "@/app/config";
+'use client';
+import { useState, useEffect } from 'react';
+import { getMovieDetails } from '@/app/utilities/utils';
+import { NEXT_PUBLIC_IMAGE_BASE_URL } from '@/app/config';
 
 const MovieDetail = ({ params: { movieId } }: { params: { movieId: number } }) => {
   const [movieDetail, setMovieDetail] = useState<any>(null);
 
   useEffect(() => {
-    (async () => {
+    const fetchMovieDetail = async () => {
       try {
         const movieDetailData = await getMovieDetails(movieId);
         setMovieDetail(movieDetailData);
       } catch (error) {
-        console.error("Error fetching movie details:", error);
+        console.error('Error fetching movie details:', error);
       }
-    })();
+    };
+    fetchMovieDetail();
   }, [movieId]);
 
   return (
-    <div className="flex bg-black text-white">
+    <div className="flex justify-center items-center min-h-screen bg-black text-white">
       {movieDetail && (
         <div className="flex">
-          <img
-            src={`${NEXT_PUBLIC_IMAGE_BASE_URL}${movieDetail.poster_path}`}
-            alt={movieDetail.title}
-            className="w-1/3 h-auto mt-10 ml-10 rounded-lg shadow-lg"
-          />
-          <div className="flex flex-col justify-center ml-6">
-            <h1 className="text-3xl font-bold text-yellow-500">{movieDetail.title}</h1>
-            <p className="mt-2 text-lg">{movieDetail.overview}</p>
-            <p className="mt-4">
-              <span className="text-yellow-500">Release Date:</span>{" "}
-              {new Date(movieDetail.release_date).toLocaleDateString()}
-            </p>
-            <p className="mt-2">
-              <span className="text-yellow-500">Rating:</span> {movieDetail.rating}
-            </p>
+          <div>
+            <img
+              src={`${NEXT_PUBLIC_IMAGE_BASE_URL}${movieDetail.poster_path}`}
+              alt={movieDetail.title}
+              className="w-full h-auto rounded-3xl mt-8 ml-12"
+              style={{ width: '40vw', maxHeight: '85vh' }}
+            />
+          </div>
+          <div className="ml-16 mt-10 justify-center text-2xl">
+            <h1 className="text-5xl font-bold text-blue-400 mb-4">{movieDetail.title}</h1>
+            <p className="mr-10 ml-10">{movieDetail.overview}</p>
           </div>
         </div>
       )}

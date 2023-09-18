@@ -60,7 +60,7 @@ export default function GenreList() {
             <div
               key={genre.id}
               className={`bg-blue-500 px-4 py-2 rounded-full cursor-pointer hover:bg-blue-600 ${
-                selectedGenre === genre.id ? "bg-yellow-500" : ""
+                selectedGenre === genre.id ? "bg-black-500" : ""
               }`}
               onClick={() => handleGenreClick(genre.id)}
             >
